@@ -19,8 +19,22 @@ public class SequenceTests {
 
     @Test
     public void checkingForNull() throws Exception {
-        assertThat(sequence.findSequence(), is(new ArrayList<Integer>()));
+        assertThat(sequence.findSequence(null), is(new ArrayList<Integer>()));
     }
 
+    @Test
+    public void checkingForEmptyArray() throws Exception {
+        assertThat(sequence.findSequence(new ArrayList<Integer>()), is(new ArrayList<Integer>()));
+    }
+
+    @Test
+    public void checkingOneElement() throws Exception {
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(-1);
+        ArrayList<Integer> expectedResult = new ArrayList<Integer>();
+        expectedResult.add(-1);
+
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
 
 }

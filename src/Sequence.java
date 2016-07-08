@@ -5,7 +5,9 @@ import java.util.ArrayList;
  */
 public class Sequence {
 
-    public ArrayList<Integer> findSequence() {
-        return new ArrayList<Integer>();
+    public ArrayList<Integer> findSequence(ArrayList<Integer> numbers) {
+        if (numbers == null)
+            return new ArrayList<>();
+        return new ArrayList<Integer>(numbers);
     }
 }
