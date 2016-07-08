@@ -11,10 +11,14 @@ import static org.junit.Assert.assertThat;
  */
 public class SequenceTests {
     private Sequence sequence;
+    private ArrayList<Integer> numbers;
+    private ArrayList<Integer> expectedResult;
 
     @Before
-    public void createSequence(){
+    public void createSequence() {
         sequence = new Sequence();
+        numbers = new ArrayList<Integer>();
+        expectedResult = new ArrayList<Integer>();
     }
 
     @Test
@@ -29,9 +33,7 @@ public class SequenceTests {
 
     @Test
     public void checkingOneElement() throws Exception {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
         numbers.add(-1);
-        ArrayList<Integer> expectedResult = new ArrayList<Integer>();
         expectedResult.add(-1);
 
         assertThat(sequence.findSequence(numbers), is(expectedResult));
@@ -39,13 +41,20 @@ public class SequenceTests {
 
     @Test
     public void checkingTwoPositiveElements() throws Exception {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
         numbers.add(1);
         numbers.add(5);
-        ArrayList<Integer> expectedResult = new ArrayList<Integer>();
         expectedResult.add(1);
         expectedResult.add(5);
         assertThat(sequence.findSequence(numbers), is(expectedResult));
     }
+
+    @Test
+    public void checkingForOnePositiveAndOneNegativeElements() throws Exception {
+        numbers.add(-1);
+        numbers.add(5);
+        expectedResult.add(5);
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
+
 
 }
