@@ -1,7 +1,10 @@
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
@@ -33,28 +36,45 @@ public class SequenceTests {
 
     @Test
     public void checkingOneElement() throws Exception {
-        numbers.add(-1);
-        expectedResult.add(-1);
+        numbers = new ArrayList<Integer>(Collections.singletonList(-1));
+        expectedResult = new ArrayList<Integer>(Collections.singletonList(-1));
 
         assertThat(sequence.findSequence(numbers), is(expectedResult));
     }
 
     @Test
     public void checkingTwoPositiveElements() throws Exception {
-        numbers.add(1);
-        numbers.add(5);
-        expectedResult.add(1);
-        expectedResult.add(5);
+        numbers = new ArrayList<Integer>(Arrays.asList(1, 5));
+        expectedResult = new ArrayList<Integer>(Arrays.asList(1, 5));
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
+
+
+    @Test
+    public void checkingForOnePositiveAndOneNegativeElements() throws Exception {
+        numbers = new ArrayList<Integer>(Arrays.asList(-1, 5));
+        expectedResult = new ArrayList<Integer>(Collections.singletonList(5));
         assertThat(sequence.findSequence(numbers), is(expectedResult));
     }
 
     @Test
-    public void checkingForOnePositiveAndOneNegativeElements() throws Exception {
-        numbers.add(-1);
-        numbers.add(5);
-        expectedResult.add(5);
+    public void checkingForNegativeElements() throws Exception {
+        numbers = new ArrayList<Integer>(Arrays.asList(-10, -9, -8, -7, -6));
+        expectedResult = new ArrayList<Integer>(Collections.singletonList(-6));
         assertThat(sequence.findSequence(numbers), is(expectedResult));
     }
 
+    @Test
+    public void checkingForPositiveElements() throws Exception {
+        numbers = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+        expectedResult = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
 
+    @Test
+    public void checkingForMixedPositiveAndNegativeElements() throws Exception {
+        numbers = new ArrayList<Integer>(Arrays.asList(1, 2, -4, 4, 5));
+        expectedResult = new ArrayList<Integer>(Arrays.asList(4, 5));
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
 }
