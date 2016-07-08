@@ -37,4 +37,15 @@ public class SequenceTests {
         assertThat(sequence.findSequence(numbers), is(expectedResult));
     }
 
+    @Test
+    public void checkingTwoPositiveElements() throws Exception {
+        ArrayList<Integer> numbers = new ArrayList<Integer>();
+        numbers.add(1);
+        numbers.add(5);
+        ArrayList<Integer> expectedResult = new ArrayList<Integer>();
+        expectedResult.add(1);
+        expectedResult.add(5);
+        assertThat(sequence.findSequence(numbers), is(expectedResult));
+    }
+
 }
